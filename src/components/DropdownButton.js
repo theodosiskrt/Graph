@@ -24,6 +24,7 @@ const styles = {
     },
   },
   dropdown: {
+    zIndex: 10000,
     backgroundColor: "#0d0d0d",
     color: "#e8e8e8",
   },
@@ -68,7 +69,6 @@ const DropdownButton = () => {
         anchorEl={anchorRef.current}
         role={undefined}
         transition
-        disablePortal
       >
         {({ TransitionProps }) => (
           <Grow
