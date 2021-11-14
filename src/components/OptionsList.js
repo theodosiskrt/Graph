@@ -16,6 +16,7 @@ import {
   addSelDataName,
   removeSelDataName,
   setSelDataNames,
+  setSelDataYear,
 } from "../store/actions";
 
 const styles = {
@@ -33,14 +34,16 @@ const styles = {
   },
 };
 
-const MultichoiceList = ({ listItems }) => {
-  const selDataNames = useSelector((state) => state.selDataNames);
+const MultichoiceList = ({ listItems, singleChoice, storeName, listTitle }) => {
+  const selData = useSelector((state) => state[storeName]);
 
   const dispatch = useDispatch();
 
-  const handleItemClick = ({ name }) => {
-    if (selDataNames.includes(name)) dispatch(removeSelDataName(name));
-    else dispatch(addSelDataName(name));
+  const handleItemClick = (item) => {
+    if (!singleChoice)
+      if (selData.includes(item.name)) dispatch(removeSelDataName(item.name));
+      else dispatch(addSelDataName(item.name));
+    else dispatch(setSelDataYear(item.name));
   };
 
   const handleSetSelNames = (isSelectAll) => {
@@ -56,21 +59,27 @@ const MultichoiceList = ({ listItems }) => {
       subheader={
         <ListSubheader>
           <Grid container>
-            <Grid xs={9}>Data</Grid>
-            <Grid xs={1.5}>
-              <Tooltip title="Select All" placement="top">
-                <IconButton onClick={() => handleSetSelNames(true)}>
-                  <Done />
-                </IconButton>
-              </Tooltip>
+            <Grid item xs={9}>
+              {listTitle}
             </Grid>
-            <Grid xs={1.5}>
-              <Tooltip title="Deselect All" placement="top">
-                <IconButton onClick={() => handleSetSelNames(false)}>
-                  <Clear />
-                </IconButton>
-              </Tooltip>
-            </Grid>
+            {!singleChoice && (
+              <>
+                <Grid item xs={1.5}>
+                  <Tooltip title="Select All" placement="top">
+                    <IconButton onClick={() => handleSetSelNames(true)}>
+                      <Done />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+                <Grid xs={1.5}>
+                  <Tooltip title="Deselect All" placement="top">
+                    <IconButton onClick={() => handleSetSelNames(false)}>
+                      <Clear />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>
+              </>
+            )}
           </Grid>
         </ListSubheader>
       }
@@ -79,7 +88,7 @@ const MultichoiceList = ({ listItems }) => {
         <ListItem
           key={item.id}
           disablePadding
-          sx={selDataNames.includes(item.name) && styles.selected}
+          sx={selData.includes(item.name) && styles.selected}
         >
           <ListItemButton onClick={() => handleItemClick(item)}>
             <ListItemText primary={item.name} />

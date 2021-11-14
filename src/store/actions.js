@@ -8,3 +8,6 @@ export const removeSelDataName = (data) => ({
   payload: data,
 });
 export const setSelDataNames = (data) => ({ type: "SET_NAMES", payload: data });
+
+//selDataYearReducer
+export const setSelDataYear = (data) => ({ type: "SET_YEAR", payload: data });

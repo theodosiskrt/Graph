@@ -3,20 +3,23 @@ import { Provider } from "react-redux";
 import { Grid } from "@mui/material";
 
 import NavBar from "./components/NavBar";
-import MultichoiceList from "./components/MultichoiceList";
+import OptionsList from "./components/OptionsList";
 import store from "./store/store";
 
 const App = () => {
-  const [listItems, setListItems] = useState([]);
+  const [names, setNames] = useState([]);
+  const [years, setYears] = useState([]);
 
-  const fetchListItems = async () => {
-    const res = await fetch("http://localhost:5000/data");
+  const fetchListItems = async (string) => {
+    const res = await fetch(`http://localhost:5000/${string}`);
     const data = await res.json();
-    setListItems(data);
+    if (string === "data") setNames(data);
+    else setYears(data);
   };
 
   useEffect(() => {
-    fetchListItems();
+    fetchListItems("data");
+    fetchListItems("years");
   }, []);
 
   return (
@@ -26,9 +29,21 @@ const App = () => {
           <Grid item xs={12}>
             <NavBar />
           </Grid>
-          <Grid item container>
+          <Grid item container xs={12}>
             <Grid item xs={2}>
-              <MultichoiceList listItems={listItems} />
+              <OptionsList
+                listItems={names}
+                storeName="selDataNames"
+                listTitle="Data"
+              />
+            </Grid>
+            <Grid item xs={2}>
+              <OptionsList
+                listItems={years}
+                storeName="selDataYear"
+                listTitle="Years"
+                singleChoice
+              />
             </Grid>
           </Grid>
         </Grid>
