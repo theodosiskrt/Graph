@@ -22,7 +22,6 @@ import {
 const styles = {
   list: {
     backgroundColor: "#fff",
-    marginLeft: "2em",
     zIndex: 0,
     minHeight: "50em",
   },
@@ -32,10 +31,14 @@ const styles = {
       backgroundColor: "#bbb",
     },
   },
+  unselected: {
+    backgroundColor: "#fff",
+  },
 };
 
-const MultichoiceList = ({ listItems, singleChoice, storeName, listTitle }) => {
-  const selData = useSelector((state) => state[storeName]);
+const OptionsList = ({ listItems, singleChoice, storeName, listTitle }) => {
+  const selData = useSelector((state) => state.selectedData[storeName]);
+  console.log(storeName);
 
   const dispatch = useDispatch();
 
@@ -71,7 +74,7 @@ const MultichoiceList = ({ listItems, singleChoice, storeName, listTitle }) => {
                     </IconButton>
                   </Tooltip>
                 </Grid>
-                <Grid xs={1.5}>
+                <Grid item xs={1.5}>
                   <Tooltip title="Deselect All" placement="top">
                     <IconButton onClick={() => handleSetSelNames(false)}>
                       <Clear />
@@ -84,19 +87,21 @@ const MultichoiceList = ({ listItems, singleChoice, storeName, listTitle }) => {
         </ListSubheader>
       }
     >
-      {listItems.map((item) => (
-        <ListItem
-          key={item.id}
-          disablePadding
-          sx={selData.includes(item.name) && styles.selected}
-        >
-          <ListItemButton onClick={() => handleItemClick(item)}>
-            <ListItemText primary={item.name} />
-          </ListItemButton>
-        </ListItem>
-      ))}
+      {listItems.map((item) => {
+        return (
+          <ListItem
+            key={item.id}
+            disablePadding
+            sx={selData.includes(item.name) ? styles.selected : {}}
+          >
+            <ListItemButton onClick={() => handleItemClick(item)}>
+              <ListItemText primary={item.name} />
+            </ListItemButton>
+          </ListItem>
+        );
+      })}
     </List>
   );
 };
 
-export default MultichoiceList;
+export default OptionsList;

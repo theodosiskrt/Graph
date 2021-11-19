@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import NavBar from "./components/NavBar";
 import OptionsList from "./components/OptionsList";
 import ShowPlotButton from "./components/ShowPlotButton";
+import Plotly from "./components/Plot";
+
 import store from "./store/store";
 
 const App = () => {
@@ -30,28 +32,27 @@ const App = () => {
           <Grid item xs={12}>
             <NavBar />
           </Grid>
-          <Grid item container xs={12}>
-            <Grid item xs={2}>
+          <Grid item container xs={12} columnSpacing={5}>
+            <Grid item xs={2} marginLeft={2}>
               <OptionsList
                 listItems={names}
-                storeName="selDataNames"
+                storeName="names"
                 listTitle="Data"
               />
             </Grid>
             <Grid item xs={2}>
               <OptionsList
                 listItems={years}
-                storeName="selDataYear"
+                storeName="year"
                 listTitle="Years"
                 singleChoice
               />
             </Grid>
-            <Grid
-              item
-              xs={2}
-              sx={{ marginLeft: "2em", alignItems: "flex-end" }}
-            >
+            <Grid item container xs={2} alignItems="flex-end">
               <ShowPlotButton />
+            </Grid>
+            <Grid item container xs={5}>
+              <Plotly />
             </Grid>
           </Grid>
         </Grid>
