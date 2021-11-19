@@ -43,7 +43,7 @@ const MultichoiceList = ({ listItems, singleChoice, storeName, listTitle }) => {
     if (!singleChoice)
       if (selData.includes(item.name)) dispatch(removeSelDataName(item.name));
       else dispatch(addSelDataName(item.name));
-    else dispatch(setSelDataYear(item.name));
+    else dispatch(setSelDataYear(selData === item.name ? "" : item.name));
   };
 
   const handleSetSelNames = (isSelectAll) => {
