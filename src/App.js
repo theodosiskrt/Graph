@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 
 import NavBar from "./components/NavBar";
 import OptionsList from "./components/OptionsList";
+import ShowPlotButton from "./components/ShowPlotButton";
 import store from "./store/store";
 
 const App = () => {
@@ -44,6 +45,13 @@ const App = () => {
                 listTitle="Years"
                 singleChoice
               />
+            </Grid>
+            <Grid
+              item
+              xs={2}
+              sx={{ marginLeft: "2em", alignItems: "flex-end" }}
+            >
+              <ShowPlotButton />
             </Grid>
           </Grid>
         </Grid>
