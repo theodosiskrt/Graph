@@ -1,4 +1,7 @@
-export const plotDataReducer = (state = { data: [], type: "" }, action) => {
+export const plotDataReducer = (
+  state = { data: [], type: "scatter" },
+  action
+) => {
   switch (action.type) {
     case "SET_TYPE":
       return {

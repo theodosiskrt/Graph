@@ -87,10 +87,10 @@ const DropdownButton = () => {
                     Scatter
                   </MenuItem>
                   <MenuItem
-                    onClick={(e) => handleClose(e, "histogram")}
+                    onClick={(e) => handleClose(e, "bar")}
                     sx={styles.dropdownItem}
                   >
-                    Histogram
+                    Bar
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
