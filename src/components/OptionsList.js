@@ -38,7 +38,6 @@ const styles = {
 
 const OptionsList = ({ listItems, singleChoice, storeName, listTitle }) => {
   const selData = useSelector((state) => state.selectedData[storeName]);
-  console.log(storeName);
 
   const dispatch = useDispatch();
 

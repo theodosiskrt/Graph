@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
-import { plotTypeReducer } from "./plotType";
+import { plotDataReducer } from "./plotData";
 import { selectedDataReducer } from "./selectedData";
 
 const allReducer = combineReducers({
-  plotType: plotTypeReducer,
+  plotData: plotDataReducer,
   selectedData: selectedDataReducer,
 });
 

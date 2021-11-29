@@ -16,13 +16,14 @@ const App = () => {
   const fetchListItems = async (string) => {
     const res = await fetch(`http://localhost:5000/${string}`);
     const data = await res.json();
-    if (string === "data") setNames(data);
-    else setYears(data);
+    return data;
   };
 
-  useEffect(() => {
-    fetchListItems("data");
-    fetchListItems("years");
+  useEffect(async () => {
+    let data = await fetchListItems("data");
+    setNames(data);
+    data = await fetchListItems("years");
+    setYears(data);
   }, []);
 
   return (
