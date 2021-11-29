@@ -1,20 +1,22 @@
 export const selectedDataReducer = (
-  state = { names: [], year: "" },
+  state = { names: [], year: "", type: "scatter" },
   action
 ) => {
   switch (action.type) {
-    case "ADD_NAME":
+    case "ADD_DATA_NAME":
       return {
         ...state,
-        names: [...state.names, action.payload],
+        names: [...state.names, action.payload].sort(),
       };
-    case "REMOVE_NAME":
+    case "REMOVE_DATA_NAME":
       const newNames = state.names.filter((name) => name !== action.payload);
       return { ...state, names: newNames };
-    case "SET_NAMES":
+    case "SET_DATA_NAMES":
       return { ...state, names: action.payload };
-    case "SET_YEAR":
+    case "SET_DATA_YEAR":
       return { ...state, year: action.payload };
+    case "SET_DATA_TYPE":
+      return { ...state, type: action.payload };
     default:
       return state;
   }

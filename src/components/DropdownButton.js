@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   ClickAwayListener,
@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-import { setPlotType } from "../store/actions";
+import { setSelDataPlotType } from "../store/actions";
 
 const styles = {
   button: {
@@ -37,6 +37,9 @@ const styles = {
 
 const DropdownButton = () => {
   const [open, setOpen] = useState(false);
+
+  const plotType = useSelector((state) => state.selectedData.type);
+
   const anchorRef = useRef(null);
 
   const dispatch = useDispatch();
@@ -46,7 +49,7 @@ const DropdownButton = () => {
   };
 
   const handleClose = ({ target }, type) => {
-    type && dispatch(setPlotType(type));
+    type && dispatch(setSelDataPlotType(type));
     if (anchorRef.current && anchorRef.current.contains(target)) {
       return;
     }
@@ -61,7 +64,7 @@ const DropdownButton = () => {
         onClick={handleToggle}
         sx={styles.button}
       >
-        Plot Type
+        Plot Type - {plotType}
         <KeyboardArrowDownIcon />
       </Button>
       <Popper

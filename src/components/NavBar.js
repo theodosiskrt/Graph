@@ -24,10 +24,10 @@ const NavBar = () => {
       <Grid item xs={1}>
         <Typography variant="h4">Graph</Typography>
       </Grid>
-      <Grid item xs={1}>
+      <Grid item xs={2}>
         <DropdownButton />
       </Grid>
-      <Grid item xs={9.7} />
+      <Grid item xs={8.7} />
       <Grid item xs={0.3}>
         <IconButton color="inherit">
           <Settings sx={styles.button} />
