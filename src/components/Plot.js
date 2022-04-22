@@ -29,7 +29,7 @@ const Plot = () => {
           marker: { color: colors[idx] },
           name: data.name,
         }))}
-        layout={{ autosize: true, width: 900, title: plotType }}
+        layout={{ autosize: true, width: 800, title: plotType }}
       />
     )
   );

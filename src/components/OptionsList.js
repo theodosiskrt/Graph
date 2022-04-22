@@ -23,7 +23,7 @@ const styles = {
   list: {
     backgroundColor: "#fff",
     zIndex: 0,
-    minHeight: "50em",
+    minHeight: "45em",
   },
   selected: {
     backgroundColor: "#ddd",

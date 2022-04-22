@@ -52,7 +52,7 @@ const App = () => {
             <Grid item container xs={2} alignItems="flex-end">
               <ShowPlotButton />
             </Grid>
-            <Grid item container xs={5}>
+            <Grid item container xs={4}>
               <Plotly />
             </Grid>
           </Grid>
